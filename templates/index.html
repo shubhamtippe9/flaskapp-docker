@@ -1,88 +1,195 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Zero To Hero</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #e0e0e0;
-        }
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 640px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #00d2ff, #7b2ff7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .badge {
-            display: inline-block;
-            margin: 1rem 0 2rem;
-            padding: 0.4rem 1.2rem;
-            border: 1px solid #7b2ff7;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            color: #c4b5fd;
-            letter-spacing: 0.05em;
-        }
-        .cards {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem 1.8rem;
-            min-width: 150px;
-            flex: 1;
-        }
-        .card span {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #9ca3af;
-            margin-bottom: 0.4rem;
-        }
-        .card strong {
-            font-size: 1.25rem;
-            color: #f9fafb;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shubham Tippe | DevOps Engineer</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(270deg, #0f172a, #1e293b, #020617);
+        background-size: 600% 600%;
+        animation: gradientBG 10s ease infinite;
+        color: #e2e8f0;
+    }
+
+    @keyframes gradientBG {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    header {
+        text-align: center;
+        padding: 80px 20px;
+    }
+
+    .profile-img {
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        border: 4px solid #38bdf8;
+        object-fit: cover;
+        box-shadow: 0 0 30px #38bdf8;
+        transition: 0.4s;
+    }
+
+    .profile-img:hover {
+        transform: scale(1.1) rotate(3deg);
+    }
+
+    h1 {
+        margin-top: 15px;
+        font-size: 32px;
+        color: #38bdf8;
+    }
+
+    .typing {
+        font-size: 20px;
+        color: #94a3b8;
+        margin-top: 10px;
+    }
+
+    section {
+        max-width: 1000px;
+        margin: auto;
+        padding: 40px 20px;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #38bdf8;
+        border-left: 5px solid #38bdf8;
+        padding-left: 10px;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        margin: 15px 0;
+        border-radius: 15px;
+        transition: 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 30px rgba(0,0,0,0.4);
+    }
+
+    .skills span {
+        display: inline-block;
+        background: #38bdf8;
+        color: #000;
+        padding: 6px 12px;
+        margin: 5px;
+        border-radius: 20px;
+        font-size: 14px;
+    }
+
+    a {
+        color: #38bdf8;
+        text-decoration: none;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0,0,0,0.3);
+    }
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>DevOps Zero To Hero</h1>
-        <div class="badge">Josh Batch 10</div>
-        <div class="cards">
-            <div class="card">
-                <span>Framework</span>
-                <strong>Flask 3.1</strong>
-            </div>
-            <div class="card">
-                <span>Runtime</span>
-                <strong>Python 3.14</strong>
-            </div>
-            <div class="card">
-                <span>Deploy</span>
-                <strong>AWS ECS</strong>
-            </div>
-        </div>
+
+<header>
+    <img src="profile.jpg.jpeg" class="profile-img">
+
+    <h1>Shubham Tippe</h1>
+    <div class="typing" id="typing"></div>
+</header>
+
+<section>
+    <h2>About Me</h2>
+    <div class="card">
+        Passionate DevOps Engineer specializing in AWS, Terraform, Docker, and CI/CD.
+        I build scalable, automated cloud infrastructure and love solving real-world problems.
     </div>
+</section>
+
+<section>
+    <h2>Projects</h2>
+
+    <div class="card">
+        <h3>🚀 Load Balancer using Terraform</h3>
+        <p>Designed AWS infrastructure with ALB, EC2, VPC using Terraform.</p>
+        <a href="https://github.com/shubhamtippe9" target="_blank">View Project</a>
+    </div>
+
+    <div class="card">
+        <h3>🐳 Flask App on ECS</h3>
+        <p>Containerized and deployed Flask app using Docker & AWS ECS.</p>
+        <a href="https://github.com/shubhamtippe9" target="_blank">View Project</a>
+    </div>
+
+</section>
+
+<section>
+    <h2>Skills</h2>
+    <div class="skills">
+        <span>AWS</span>
+        <span>Terraform</span>
+        <span>Docker</span>
+        <span>Linux</span>
+        <span>Git</span>
+        <span>CI/CD</span>
+    </div>
+</section>
+
+<section>
+    <h2>Contact</h2>
+    <div class="card">
+        📧 Email: shubhamtippe9@gmail.com <br>
+        📱 Mobile: 9607115535 <br>
+        🔗 LinkedIn: <a href="https://www.linkedin.com/in/shubhamtippe9/" target="_blank">Profile</a> <br>
+        💻 GitHub: <a href="https://github.com/shubhamtippe9" target="_blank">GitHub</a>
+    </div>
+</section>
+
+<footer>
+    © 2026 Shubham Tippe | DevOps Portfolio
+</footer>
+
+<script>
+    const text = ["DevOps Engineer 🚀", "AWS | Terraform | Docker", "CI/CD Enthusiast 🔥"];
+    let i = 0, j = 0, currentText = "", isDeleting = false;
+
+    function type() {
+        currentText = text[i];
+        document.getElementById("typing").textContent = currentText.substring(0, j);
+
+        if (!isDeleting && j < currentText.length) {
+            j++;
+            setTimeout(type, 100);
+        } else if (isDeleting && j > 0) {
+            j--;
+            setTimeout(type, 50);
+        } else {
+            isDeleting = !isDeleting;
+            if (!isDeleting) i = (i + 1) % text.length;
+            setTimeout(type, 1000);
+        }
+    }
+
+    type();
+</script>
+
 </body>
 </html>
