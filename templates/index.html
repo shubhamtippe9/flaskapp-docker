@@ -1,194 +1,480 @@
-<!<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shubham Tippe | DevOps Engineer</title>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shubham Tippe | DevOps Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sky: #38bdf8;
+      --bg: #060d1a;
+      --surface: rgba(56,189,248,0.06);
+      --text: #e2e8f0;
+      --muted: #64748b;
     }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(270deg, #0f172a, #1e293b, #020617);
-        background-size: 600% 600%;
-        animation: gradientBG 10s ease infinite;
-        color: #e2e8f0;
+      font-family: 'Syne', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    body::after {
+      content:'';
+      position:fixed; inset:0; z-index:0;
+      background-image:
+        linear-gradient(rgba(56,189,248,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events:none;
     }
 
-    @keyframes gradientBG {
-        0% {background-position: 0% 50%;}
-        50% {background-position: 100% 50%;}
-        100% {background-position: 0% 50%;}
-    }
-
+    /* HERO */
     header {
-        text-align: center;
-        padding: 80px 20px;
+      position:relative; z-index:1;
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:60px 20px; overflow:hidden;
     }
+    .hero-glow {
+      position:absolute; width:700px; height:700px;
+      background:radial-gradient(circle, rgba(56,189,248,.15) 0%, transparent 70%);
+      border-radius:50%; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      pointer-events:none;
+      animation:pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ opacity:.6; transform:translate(-50%,-50%) scale(1); }
+      50%{     opacity:1;  transform:translate(-50%,-50%) scale(1.12); }
+    }
+    .hero-inner { position:relative; z-index:1; text-align:center; }
 
+    .photo-ring {
+      position:relative; display:inline-block; margin-bottom:28px;
+    }
+    .photo-ring::before {
+      content:'';
+      position:absolute; inset:-5px; border-radius:50%;
+      background:conic-gradient(var(--sky) 0deg, #a78bfa 120deg, #34d399 240deg, var(--sky) 360deg);
+      animation:spin 5s linear infinite; z-index:0;
+    }
+    @keyframes spin { to{ transform:rotate(360deg); } }
+    .photo-bg {
+      position:absolute; inset:3px;
+      border-radius:50%; background:var(--bg); z-index:1;
+    }
     .profile-img {
-        width: 170px;
-        height: 170px;
-        border-radius: 50%;
-        border: 4px solid #38bdf8;
-        object-fit: cover;
-        box-shadow: 0 0 30px #38bdf8;
-        transition: 0.4s;
+      position:relative; z-index:2;
+      width:190px; height:190px;
+      border-radius:50%;
+      object-fit:cover;
+      object-position:50% 12%;
+      display:block; margin:5px;
     }
-
-    .profile-img:hover {
-        transform: scale(1.1) rotate(3deg);
+    .status-dot {
+      position:absolute; bottom:14px; right:14px; z-index:3;
+      width:18px; height:18px;
+      background:#22c55e; border-radius:50%;
+      border:3px solid var(--bg);
+      animation:blink 2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%,100%{ box-shadow:0 0 0 0 rgba(34,197,94,.6); }
+      50%{     box-shadow:0 0 0 8px rgba(34,197,94,0); }
     }
 
     h1 {
-        margin-top: 15px;
-        font-size: 32px;
-        color: #38bdf8;
+      font-size:clamp(2.4rem,6vw,4rem);
+      font-weight:800; letter-spacing:-1px; line-height:1; color:#fff;
+    }
+    h1 span { color:var(--sky); }
+    .role {
+      font-family:'Space Mono',monospace;
+      font-size:13px; color:var(--sky);
+      letter-spacing:3px; text-transform:uppercase;
+      margin:12px 0 8px;
+    }
+    .typing-wrap { font-size:18px; color:var(--muted); min-height:28px; }
+    #cursor {
+      display:inline-block; width:2px; height:1.1em;
+      background:var(--sky); vertical-align:middle; margin-left:2px;
+      animation:blink-c .7s step-end infinite;
+    }
+    @keyframes blink-c { 50%{ opacity:0; } }
+
+    .cta-btns {
+      margin-top:34px; display:flex; gap:14px;
+      justify-content:center; flex-wrap:wrap;
+    }
+    .btn {
+      font-family:'Space Mono',monospace; font-size:13px;
+      padding:12px 28px; border-radius:4px;
+      text-decoration:none; letter-spacing:1px;
+      transition:.25s; display:inline-flex; align-items:center; gap:8px;
+    }
+    .btn-primary { background:var(--sky); color:#000; font-weight:700; }
+    .btn-primary:hover { background:#fff; transform:translateY(-3px); }
+    .btn-outline {
+      border:1px solid rgba(56,189,248,.4); color:var(--sky); background:transparent;
+    }
+    .btn-outline:hover {
+      border-color:var(--sky); background:rgba(56,189,248,.08); transform:translateY(-3px);
     }
 
-    .typing {
-        font-size: 20px;
-        color: #94a3b8;
-        margin-top: 10px;
+    .scroll-hint {
+      position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:6px;
+      opacity:.45; font-family:'Space Mono',monospace; font-size:11px;
+      letter-spacing:2px; text-transform:uppercase; color:var(--muted);
+    }
+    .scroll-line {
+      width:1px; height:40px;
+      background:linear-gradient(to bottom, var(--sky), transparent);
+      animation:scrollDown 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollDown {
+      0%  { transform:scaleY(0); transform-origin:top; }
+      50% { transform:scaleY(1); transform-origin:top; }
+      51% { transform:scaleY(1); transform-origin:bottom; }
+      100%{ transform:scaleY(0); transform-origin:bottom; }
     }
 
-    section {
-        max-width: 1000px;
-        margin: auto;
-        padding: 40px 20px;
+    /* SECTIONS */
+    main { position:relative; z-index:1; }
+    section { max-width:1000px; margin:0 auto; padding:80px 24px; }
+    .section-label {
+      font-family:'Space Mono',monospace; font-size:11px;
+      letter-spacing:4px; text-transform:uppercase;
+      color:var(--sky); margin-bottom:8px;
     }
-
     h2 {
-        margin-bottom: 20px;
-        color: #38bdf8;
-        border-left: 5px solid #38bdf8;
-        padding-left: 10px;
+      font-size:clamp(1.8rem,4vw,2.6rem);
+      font-weight:800; color:#fff; margin-bottom:40px; line-height:1.1;
     }
 
+    /* ABOUT */
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    @media(max-width:640px){
+      .about-grid, .proj-grid, .contact-grid { grid-template-columns:1fr; }
+    }
     .card {
-        background: rgba(255,255,255,0.05);
-        backdrop-filter: blur(10px);
-        padding: 20px;
-        margin: 15px 0;
-        border-radius: 15px;
-        transition: 0.3s;
+      background:var(--surface); border:1px solid rgba(56,189,248,.12);
+      padding:28px; border-radius:12px; transition:.3s;
+      position:relative; overflow:hidden;
+    }
+    .card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg, transparent, var(--sky), transparent);
+      opacity:0; transition:.3s;
+    }
+    .card:hover { transform:translateY(-6px); border-color:rgba(56,189,248,.3); }
+    .card:hover::before { opacity:1; }
+    .card-icon { font-size:30px; margin-bottom:12px; }
+    .card h3 { font-size:1.05rem; color:var(--sky); margin-bottom:8px; }
+    .card p { color:var(--muted); font-size:.93rem; line-height:1.65; }
+
+    /* PROJECTS */
+    .proj-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .proj-card {
+      background:var(--surface); border:1px solid rgba(56,189,248,.12);
+      border-radius:12px; padding:26px; transition:.3s;
+      display:flex; flex-direction:column; justify-content:space-between;
+      position:relative; overflow:hidden;
+    }
+    .proj-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg, transparent, var(--sky), transparent);
+      opacity:0; transition:.3s;
+    }
+    .proj-card:hover { transform:translateY(-6px); border-color:rgba(56,189,248,.35); }
+    .proj-card:hover::before { opacity:1; }
+    .proj-card h3 { font-size:1.05rem; color:#fff; margin-bottom:10px; }
+    .proj-card p  { color:var(--muted); line-height:1.6; font-size:.9rem; flex-grow:1; }
+    .proj-footer  {
+      display:flex; justify-content:space-between; align-items:center; margin-top:18px;
+    }
+    .proj-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .tag {
+      font-family:'Space Mono',monospace; font-size:10px;
+      padding:3px 9px; border-radius:3px;
+      background:rgba(56,189,248,.1); color:var(--sky);
+      border:1px solid rgba(56,189,248,.2);
+    }
+    .proj-link {
+      width:36px; height:36px; border-radius:50%;
+      border:1px solid rgba(56,189,248,.3);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--sky); text-decoration:none; font-size:16px;
+      transition:.25s; flex-shrink:0; margin-left:10px;
+    }
+    .proj-link:hover { background:var(--sky); color:#000; transform:rotate(45deg); }
+
+    /* SKILLS */
+    .skills-grid {
+      display:grid; grid-template-columns:repeat(auto-fill, minmax(130px,1fr)); gap:14px;
+    }
+    .skill-item {
+      background:var(--surface); border:1px solid rgba(56,189,248,.12);
+      border-radius:10px; padding:20px 14px;
+      text-align:center; transition:.3s; cursor:default;
+    }
+    .skill-item:hover {
+      border-color:var(--sky); background:rgba(56,189,248,.08); transform:translateY(-4px);
+    }
+    .skill-icon { font-size:26px; margin-bottom:8px; }
+    .skill-name {
+      font-family:'Space Mono',monospace; font-size:11px;
+      color:var(--text); letter-spacing:1px;
     }
 
-    .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 30px rgba(0,0,0,0.4);
+    /* CONTACT */
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .contact-item {
+      display:flex; align-items:center; gap:14px;
+      background:var(--surface); border-radius:10px; padding:18px;
+      text-decoration:none; color:var(--text);
+      border:1px solid rgba(56,189,248,.1); transition:.25s;
     }
-
-    .skills span {
-        display: inline-block;
-        background: #38bdf8;
-        color: #000;
-        padding: 6px 12px;
-        margin: 5px;
-        border-radius: 20px;
-        font-size: 14px;
+    .contact-item:hover { border-color:rgba(56,189,248,.35); transform:translateX(4px); }
+    .contact-icon {
+      width:40px; height:40px; border-radius:8px;
+      background:rgba(56,189,248,.12);
+      display:flex; align-items:center; justify-content:center;
+      font-size:18px; flex-shrink:0;
     }
-
-    a {
-        color: #38bdf8;
-        text-decoration: none;
+    .contact-label {
+      font-family:'Space Mono',monospace; font-size:10px;
+      color:var(--muted); letter-spacing:2px; text-transform:uppercase; margin-bottom:3px;
     }
+    .contact-value { font-size:.88rem; color:var(--sky); }
 
+    .divider {
+      max-width:1000px; margin:0 auto; height:1px;
+      background:linear-gradient(90deg, transparent, rgba(56,189,248,.2), transparent);
+    }
     footer {
-        text-align: center;
-        padding: 20px;
-        background: rgba(0,0,0,0.3);
+      text-align:center; padding:28px 20px;
+      font-family:'Space Mono',monospace; font-size:12px;
+      color:var(--muted); position:relative; z-index:1;
     }
-</style>
+    .fade-in { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+    .fade-in.visible { opacity:1; transform:none; }
+  </style>
 </head>
-
 <body>
 
 <header>
-    <img src="profile.jpg.jpeg" class="profile-img">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
 
-    <h1>Shubham Tippe</h1>
-    <div class="typing" id="typing"></div>
+    <div class="photo-ring">
+      <div class="photo-bg"></div>
+      <!-- ✅ Place your photo in the same folder as this file and name it: shubham.jpg -->
+      <img src="profile1.jpeg" class="profile-img" alt="Shubham Tippe" />
+      <div class="status-dot"></div>
+    </div>
+
+    <div class="role">DevOps Engineer</div>
+    <h1>Shubham <span>Tippe</span></h1>
+    <div class="typing-wrap">
+      <span id="typed"></span><span id="cursor"></span>
+    </div>
+    <div class="cta-btns">
+      <a href="https://github.com/shubhamtippe9" target="_blank" class="btn btn-primary">&#9889; GitHub</a>
+      <a href="https://www.linkedin.com/in/shubhamtippe9/" target="_blank" class="btn btn-outline">&#128279; LinkedIn</a>
+    </div>
+
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
 </header>
 
-<section>
-    <h2>About Me</h2>
-    <div class="card">
-        Passionate DevOps Engineer specializing in AWS, Terraform, Docker, and CI/CD.
-        I build scalable, automated cloud infrastructure and love solving real-world problems.
+<main>
+
+  <!-- 01 ABOUT -->
+  <section class="fade-in">
+    <div class="section-label">01 &mdash; About</div>
+    <h2>Who I Am</h2>
+    <div class="about-grid">
+      <div class="card">
+        <div class="card-icon">&#9925;</div>
+        <h3>Cloud Infrastructure</h3>
+        <p>Building scalable, resilient AWS infrastructure using Terraform and modern IaC practices.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#128260;</div>
+        <h3>CI/CD Pipelines</h3>
+        <p>Designing end-to-end automation pipelines that ship code faster and more reliably.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#128051;</div>
+        <h3>Containerization</h3>
+        <p>Containerizing apps with Docker and orchestrating deployments on AWS ECS and beyond.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#128295;</div>
+        <h3>Problem Solver</h3>
+        <p>Passionate about tackling real-world infrastructure challenges with clean, automated solutions.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<section>
-    <h2>Projects</h2>
+  <div class="divider"></div>
 
-    <div class="card">
-        <h3>🚀 Load Balancer using Terraform</h3>
-        <p>Designed AWS infrastructure with ALB, EC2, VPC using Terraform.</p>
-        <a href="https://github.com/shubhamtippe9" target="_blank">View Project</a>
+  <!-- 02 PROJECTS -->
+  <section class="fade-in">
+    <div class="section-label">02 &mdash; Projects</div>
+    <h2>Things I've Built</h2>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <h3>&#127959; terraform-vpc</h3>
+        <p>Complete AWS VPC setup using Terraform &mdash; subnets, route tables, internet gateway, and security groups defined as infrastructure as code.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="tag">Terraform</span><span class="tag">VPC</span><span class="tag">HCL</span></div>
+          <a href="https://github.com/shubhamtippe9/terraform-vpc" target="_blank" class="proj-link">&#8599;</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <h3>&#128640; Load Balancer &mdash; Terraform</h3>
+        <p>AWS infrastructure with Application Load Balancer, EC2, and VPC using Terraform for scalable, highly available deployments.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="tag">ALB</span><span class="tag">EC2</span><span class="tag">HCL</span></div>
+          <a href="https://github.com/shubhamtippe9/load_balencer-using-terraform" target="_blank" class="proj-link">&#8599;</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <h3>&#128230; terraform-modules-vpc</h3>
+        <p>Refactored VPC infrastructure into reusable Terraform modules for clean, DRY code &mdash; enabling easy multi-environment deployments.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="tag">Modules</span><span class="tag">VPC</span><span class="tag">HCL</span></div>
+          <a href="https://github.com/shubhamtippe9/terraform-modules-vpc" target="_blank" class="proj-link">&#8599;</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <h3>&#128051; docker-file</h3>
+        <p>Dockerfile configurations for containerizing applications &mdash; exploring best practices for lightweight, production-ready Docker images.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="tag">Docker</span><span class="tag">Containers</span></div>
+          <a href="https://github.com/shubhamtippe9/docker-file" target="_blank" class="proj-link">&#8599;</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <h3>&#127760; 3-tier-project</h3>
+        <p>Classic 3-tier architecture (web, app, database) on AWS &mdash; separating concerns across layers for a secure and scalable application.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="tag">AWS</span><span class="tag">3-Tier</span><span class="tag">Cloud</span></div>
+          <a href="https://github.com/shubhamtippe9/3-tier-project" target="_blank" class="proj-link">&#8599;</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <h3>&#128295; terrafrom-3tier</h3>
+        <p>Full 3-tier AWS infrastructure provisioned entirely with Terraform &mdash; automating web, app, and database tiers end-to-end as code.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="tag">Terraform</span><span class="tag">3-Tier</span><span class="tag">AWS</span></div>
+          <a href="https://github.com/shubhamtippe9/terrafrom-3tier" target="_blank" class="proj-link">&#8599;</a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <h3>&#128679; flaskapp-docker</h3>
+        <p>Python Flask web application fully containerized with Docker &mdash; portable, reproducible deployments following DevOps best practices.</p>
+        <div class="proj-footer">
+          <div class="proj-tags"><span class="tag">Flask</span><span class="tag">Docker</span><span class="tag">Python</span></div>
+          <a href="https://github.com/shubhamtippe9/flaskapp-docker" target="_blank" class="proj-link">&#8599;</a>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <div class="card">
-        <h3>🐳 Flask App on ECS</h3>
-        <p>Containerized and deployed Flask app using Docker & AWS ECS.</p>
-        <a href="https://github.com/shubhamtippe9" target="_blank">View Project</a>
+  <div class="divider"></div>
+
+  <!-- 03 SKILLS -->
+  <section class="fade-in">
+    <div class="section-label">03 &mdash; Skills</div>
+    <h2>Tools &amp; Technologies</h2>
+    <div class="skills-grid">
+      <div class="skill-item"><div class="skill-icon">&#9925;</div><div class="skill-name">AWS</div></div>
+      <div class="skill-item"><div class="skill-icon">&#127959;</div><div class="skill-name">Terraform</div></div>
+      <div class="skill-item"><div class="skill-icon">&#128051;</div><div class="skill-name">Docker</div></div>
+      <div class="skill-item"><div class="skill-icon">&#128039;</div><div class="skill-name">Linux</div></div>
+      <div class="skill-item"><div class="skill-icon">&#128257;</div><div class="skill-name">Git</div></div>
+      <div class="skill-item"><div class="skill-icon">&#9881;</div><div class="skill-name">CI/CD</div></div>
+      <div class="skill-item"><div class="skill-icon">&#127760;</div><div class="skill-name">Networking</div></div>
+      <div class="skill-item"><div class="skill-icon">&#128274;</div><div class="skill-name">IAM / Security</div></div>
     </div>
+  </section>
 
-</section>
+  <div class="divider"></div>
 
-<section>
-    <h2>Skills</h2>
-    <div class="skills">
-        <span>AWS</span>
-        <span>Terraform</span>
-        <span>Docker</span>
-        <span>Linux</span>
-        <span>Git</span>
-        <span>CI/CD</span>
+  <!-- 04 CONTACT -->
+  <section class="fade-in">
+    <div class="section-label">04 &mdash; Contact</div>
+    <h2>Get In Touch</h2>
+    <div class="contact-grid">
+      <a href="mailto:shubhamtippe9@gmail.com" class="contact-item">
+        <div class="contact-icon">&#128231;</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">shubhamtippe9@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+919607115535" class="contact-item">
+        <div class="contact-icon">&#128241;</div>
+        <div>
+          <div class="contact-label">Mobile</div>
+          <div class="contact-value">+91 9607115535</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/shubhamtippe9/" target="_blank" class="contact-item">
+        <div class="contact-icon">&#128279;</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">in/shubhamtippe9</div>
+        </div>
+      </a>
+      <a href="https://github.com/shubhamtippe9" target="_blank" class="contact-item">
+        <div class="contact-icon">&#128187;</div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-value">shubhamtippe9</div>
+        </div>
+      </a>
     </div>
-</section>
+  </section>
 
-<section>
-    <h2>Contact</h2>
-    <div class="card">
-        📧 Email: shubhamtippe9@gmail.com <br>
-        📱 Mobile: 9607115535 <br>
-        🔗 LinkedIn: <a href="https://www.linkedin.com/in/shubhamtippe9/" target="_blank">Profile</a> <br>
-        💻 GitHub: <a href="https://github.com/shubhamtippe9" target="_blank">GitHub</a>
-    </div>
-</section>
+</main>
 
-<footer>
-    © 2026 Shubham Tippe | DevOps Portfolio
-</footer>
+<footer>&copy; 2026 Shubham Tippe &nbsp;&middot;&nbsp; DevOps Portfolio &nbsp;&middot;&nbsp; Pune, Maharashtra</footer>
 
 <script>
-    const text = ["DevOps Engineer 🚀", "AWS | Terraform | Docker", "CI/CD Enthusiast 🔥"];
-    let i = 0, j = 0, currentText = "", isDeleting = false;
+  const lines = ["DevOps Engineer", "AWS - Terraform - Docker", "CI/CD Enthusiast"];
+  let li = 0, ci = 0, del = false;
+  function tick() {
+    const el = document.getElementById('typed');
+    const cur = lines[li];
+    if (!del && ci < cur.length)  { el.textContent = cur.slice(0, ++ci); setTimeout(tick, 90); }
+    else if (del && ci > 0)       { el.textContent = cur.slice(0, --ci); setTimeout(tick, 45); }
+    else if (!del)                { del = true;  setTimeout(tick, 1400); }
+    else                          { del = false; li = (li + 1) % lines.length; setTimeout(tick, 400); }
+  }
+  tick();
 
-    function type() {
-        currentText = text[i];
-        document.getElementById("typing").textContent = currentText.substring(0, j);
-
-        if (!isDeleting && j < currentText.length) {
-            j++;
-            setTimeout(type, 100);
-        } else if (isDeleting && j > 0) {
-            j--;
-            setTimeout(type, 50);
-        } else {
-            isDeleting = !isDeleting;
-            if (!isDeleting) i = (i + 1) % text.length;
-            setTimeout(type, 1000);
-        }
-    }
-
-    type();
+  const obs = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 </script>
 
 </body>
